@@ -1,4 +1,8 @@
 {
+  "app_name":{
+    "title": "情報ナビ",
+    "tag": "チャット"
+  }, 
   "language": {
     "label": "言語",
     "english": "英語",

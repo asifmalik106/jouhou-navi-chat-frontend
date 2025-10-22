@@ -1,4 +1,8 @@
 {
+  "app_name":{
+    "title": "Info Navi",
+    "tag": "chat"
+  }, 
   "language": {
     "label": "Language",
     "english": "English",
@@ -22,5 +26,16 @@
   "contact": {
     "title": "Contact",
     "message": "Reach out to the team for more information."
+  },
+  "login":{
+    "login":"Login",
+    "tagline": "Login with your registered email & password.",
+    "email":"E-mail",
+    "password": "Password",
+    "forget_password": "Forgot your pasword?",
+    "register_label": "Don't have an account?",
+    "register": "Register",
+    "alert_title": "Wrong E-mail or Password!",
+    "alert_tagline":"You have entered wrong credentials."
   }
 }
