@@ -1,0 +1,25 @@
+{
+  "language": {
+    "label": "Language",
+    "english": "English",
+    "japanese": "Japanese",
+    "bengali": "Bengali"
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "home": {
+    "title": "Welcome to Jouhou Navi Chat",
+    "message": "Explore localized content across all routes with Vue 3."
+  },
+  "about": {
+    "title": "About Jouhou Navi Chat",
+    "message": "This demo showcases vue-router integrated with Vue I18n."
+  },
+  "contact": {
+    "title": "Contact",
+    "message": "Reach out to the team for more information."
+  }
+}
