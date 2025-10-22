@@ -26,5 +26,16 @@
   "contact": {
     "title": "お問い合わせ",
     "message": "詳細はチームまでご連絡ください。"
+  },
+  "login": {
+    "login": "ログイン",
+    "tagline": "アカウントをお持ちの方はログインしてください。",
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "forget_password": "パスワードをお忘れですか？",
+    "register_label": "アカウントの登録がお済みでない方",
+    "register": "登録する",
+    "alert_title": "ログイン認証情報が正しくありません",
+    "alert_tagline": "入力内容をご確認のうえ、もう一度お試しください。"
   }
 }
