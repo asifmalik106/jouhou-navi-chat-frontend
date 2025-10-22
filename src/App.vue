@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="app" :class="localeClass">
     <header class="app-header">
       <nav class="nav">
         <RouterLink class="nav-link" to="/">
@@ -42,14 +42,32 @@ const languageOptions = computed(() => [
   { value: 'ja', labelKey: 'language.japanese' },
   { value: 'bn', labelKey: 'language.bengali' },
 ]);
+
+const localeClass = computed(() => {
+  const map = {
+    en: 'locale-en',
+    ja: 'locale-ja',
+    bn: 'locale-bn',
+  };
+
+  return map[locale.value] ?? 'locale-en';
+});
 </script>
 
 <style scoped>
 .app {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   min-height: 100vh;
   background: #f5f5f5;
   color: #1a1a1a;
+}
+
+.app.locale-ja {
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif;
+}
+
+.app.locale-bn {
+  font-family: 'AdorshoLipi', 'Noto Sans Bengali', 'Vrinda', sans-serif;
 }
 
 .app-header {

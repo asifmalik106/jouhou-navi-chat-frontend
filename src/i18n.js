@@ -3,7 +3,7 @@ import en from './locales/en.json';
 import ja from './locales/ja.json';
 import bn from './locales/bn.json';
 
-// Provide English and Japanese translations for basic navigation and page content
+// Provide English, Japanese, and Bangla translations for navigation and page content
 const i18n = createI18n({
   legacy: false,
   locale: 'en',
