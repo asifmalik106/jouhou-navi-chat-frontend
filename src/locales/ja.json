@@ -8,7 +8,8 @@
   "navigation": {
     "home": "ホーム",
     "about": "概要",
-    "contact": "お問い合わせ"
+    "contact": "お問い合わせ",
+    "login": "ログイン"
   },
   "home": {
     "title": "情報ナビチャットへようこそ",

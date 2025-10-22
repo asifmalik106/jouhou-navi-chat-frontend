@@ -8,7 +8,8 @@
   "navigation": {
     "home": "Home",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "login": "Login"
   },
   "home": {
     "title": "Welcome to Jouhou Navi Chat",

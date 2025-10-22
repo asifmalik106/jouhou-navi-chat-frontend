@@ -11,6 +11,9 @@
         <RouterLink class="nav-link" to="/contact">
           {{ t('navigation.contact') }}
         </RouterLink>
+        <RouterLink class="nav-link" to="/login">
+          {{ t('navigation.login') }}
+        </RouterLink>
       </nav>
       <label class="language-select">
         <span>{{ t('language.label') }}</span>
