@@ -41,14 +41,20 @@
                             id="checkNativeSwitch" switch>
                         <label class="form-check-label" for="exampleCheck1">Check me out</label>
                     </div> -->
-                        <p class="text-mute text-end"><a class="text-dark" href="#">{{ t('login.forget_password') }}</a></p>
+                        <p class="text-mute text-end">
+                          <RouterLink class="text-dark text-decoration-none" to="/forgot-password">
+                            {{ t('login.forget_password') }}
+                          </RouterLink>
+                        </p>
 
 
                         <button type="submit" class="btn btn-dark btn-full mb-3">{{ t('login.login') }}</button>
 
                     </form>
-                    <p class="text-center text-muted mb-2">{{ t('login.register_label') }}</p>
-                    <button type="submit" class="btn btn-light btn-full">{{ t('login.register') }}</button>
+                    <p class="text-center text-muted mb-2 mt-2">{{ t('login.register_label') }}</p>
+                    <RouterLink class="btn btn-light btn-full" to="/register">
+                      {{ t('login.register') }}
+                    </RouterLink>
                 </div>
             </div>
         </div>
@@ -66,4 +72,3 @@ const { t } = useI18n({ useScope: 'global' });
   min-height: 60vh;
 }
 </style>
-

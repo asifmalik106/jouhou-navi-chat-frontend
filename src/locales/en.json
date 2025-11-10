@@ -37,5 +37,28 @@
     "register": "Register",
     "alert_title": "Wrong E-mail or Password!",
     "alert_tagline":"You have entered wrong credentials."
+  },
+  "register": {
+    "title": "Create your account",
+    "tagline": "Share a few details to start exploring Info Navi.",
+    "name": "Full name",
+    "email": "E-mail",
+    "password": "Password",
+    "confirm_password": "Confirm password",
+    "cta": "Create account",
+    "login_label": "Already registered?",
+    "login": "Return to login",
+    "alert_title": "Complete the form to continue",
+    "alert_tagline": "Please double-check your information before submitting."
+  },
+  "forgot": {
+    "title": "Reset your password",
+    "tagline": "Enter your registered email and we'll send a reset link.",
+    "email": "E-mail",
+    "cta": "Send reset link",
+    "login_label": "Remembered it?",
+    "login": "Back to login",
+    "alert_title": "Need help signing in?",
+    "alert_tagline": "If the email is valid, you'll receive password reset instructions shortly."
   }
 }
