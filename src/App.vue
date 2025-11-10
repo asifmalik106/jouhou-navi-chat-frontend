@@ -23,7 +23,7 @@
             :key="option.value"
             :value="option.value"
           >
-            {{ t(option.labelKey) }}
+            {{ option.label }}
           </option>
         </select>
       </label>
@@ -41,9 +41,9 @@ import { useI18n } from 'vue-i18n';
 const { t, locale } = useI18n({ useScope: 'global' });
 
 const languageOptions = computed(() => [
-  { value: 'en', labelKey: 'language.english' },
-  { value: 'ja', labelKey: 'language.japanese' },
-  { value: 'bn', labelKey: 'language.bengali' },
+  { value: 'en', label: 'English' },
+  { value: 'ja', label: '日本語' },
+  { value: 'bn', label: 'বাংলা' },
 ]);
 
 const localeClass = computed(() => {
