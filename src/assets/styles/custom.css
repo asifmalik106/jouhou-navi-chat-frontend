@@ -1,3 +1,6 @@
 .alert-heading{
     margin-bottom: 6px;
 }
+.login-box {
+    max-width: 350px;
+}
