@@ -27,7 +27,7 @@
               type="info"
               :title="t('confirm_email.title')"
               :description="state.notice"
-              :icon="bi-envelope-check"
+              icon="bi-envelope-check fs-4"
             />
             <AlertBox
               v-if="state.success"
@@ -43,7 +43,7 @@
                 <input
                   v-model="form.email"
                   type="email"
-                  class="form-control"
+                  :class="state.emailClass"
                   id="confirmEmail"
                   :readonly="isEmailLocked"
                   :aria-readonly="isEmailLocked"
@@ -113,6 +113,7 @@ const state = reactive({
   error: "",
   success: "",
   notice: "",
+  emailClass: "form-control"
 });
 
 const isEmailLocked = computed(() => Boolean(route.query.email));
@@ -137,10 +138,11 @@ const applyRegistrationNotice = () => {
       record?.email && form.email && record.email === form.email;
     if (expired || !emailMatches) {
       sessionStorage.removeItem(REGISTRATION_NOTICE_KEY);
-      state.notice = "";
+      state.notice = "form-control-plaintext";
       return;
     }
     state.notice = t("confirm_email.registration_notice");
+    state.emailClass = "form-control-plaintext"
     sessionStorage.removeItem(REGISTRATION_NOTICE_KEY);
   } catch {
     state.notice = "";
