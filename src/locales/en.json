@@ -86,7 +86,8 @@
     "resend": "Need another code?",
     "login_cta": "Continue to login",
     "success_message": "Email verified successfully. You can log in now.",
-    "error_message": "Verification failed. Check the code and try again."
+    "error_message": "Verification failed. Check the code and try again.",
+    "registration_notice": "Account created successfully. Please check your email for the verification code and confirm your account."
   },
   "forgot_confirm": {
     "title": "Set a new password",

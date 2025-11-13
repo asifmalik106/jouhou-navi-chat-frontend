@@ -66,12 +66,13 @@ import { authApi } from '../services/authApi';
 
 const { t } = useI18n({ useScope: 'global' });
 const router = useRouter();
+const REGISTRATION_NOTICE_KEY = 'registration_success_notice';
 
 const form = reactive({
-  name: '',
-  email: '',
-  password: '',
-  confirmPassword: '',
+  name: 'asif',
+  email: 'a@b.com',
+  password: '123456',
+  confirmPassword: '123456',
 });
 
 const state = reactive({
@@ -79,6 +80,16 @@ const state = reactive({
   error: '',
   success: '',
 });
+
+const persistRegistrationNotice = (email) => {
+  if (typeof window === 'undefined') return;
+  try {
+    const payload = JSON.stringify({ email, createdAt: Date.now() });
+    sessionStorage.setItem(REGISTRATION_NOTICE_KEY, payload);
+  } catch {
+    // Ignore storage errors.
+  }
+};
 
 const handleSubmit = async () => {
   state.loading = true;
@@ -98,6 +109,7 @@ const handleSubmit = async () => {
       password: form.password,
     });
     state.success = t('register.success_message');
+    persistRegistrationNotice(form.email);
     await router.push({
       name: 'confirm-email',
       query: { email: form.email },
