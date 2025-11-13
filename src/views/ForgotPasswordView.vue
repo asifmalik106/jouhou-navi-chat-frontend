@@ -10,25 +10,23 @@
             </h4>
             <h5 class="text-center">{{ t('forgot.title') }}</h5>
             <p class="text-center text-muted">{{ t('forgot.tagline') }}</p>
-            <div class="alert alert-warning" role="alert">
-              <span class="alert-icon"><i class="bi bi-exclamation-lg"></i></span>
-              <div class="alert-text">
-                <p class="alert-heading">{{ t('forgot.alert_title') }}</p>
-                <p class="alert-body">{{ t('forgot.alert_tagline') }}</p>
-              </div>
-            </div>
-            <div v-if="state.error" class="alert alert-danger" role="alert">
-              <div class="alert-text">
-                <p class="alert-heading">{{ t('forgot.title') }}</p>
-                <p class="alert-body">{{ state.error }}</p>
-              </div>
-            </div>
-            <div v-if="state.success" class="alert alert-success" role="alert">
-              <div class="alert-text">
-                <p class="alert-heading">{{ t('forgot.title') }}</p>
-                <p class="alert-body">{{ state.success }}</p>
-              </div>
-            </div>
+            <AlertBox
+              type="warning"
+              :title="t('forgot.alert_title')"
+              :description="t('forgot.alert_tagline')"
+            />
+            <AlertBox
+              v-if="state.error"
+              type="danger"
+              :title="t('forgot.title')"
+              :description="state.error"
+            />
+            <AlertBox
+              v-if="state.success"
+              type="success"
+              :title="t('forgot.title')"
+              :description="state.success"
+            />
             <form @submit.prevent="handleSubmit">
               <div class="mb-3">
                 <label for="forgotEmail" class="form-label">{{ t('forgot.email') }}</label>
@@ -58,6 +56,7 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import { useI18n } from 'vue-i18n';
+import AlertBox from '../components/AlertBox.vue';
 import { authApi } from '../services/authApi';
 
 const { t } = useI18n({ useScope: 'global' });

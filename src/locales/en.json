@@ -35,8 +35,15 @@
     "forget_password": "Forgot your pasword?",
     "register_label": "Don't have an account?",
     "register": "Register",
+    "verify_label": "Need to verify email?",
+    "verify": "Verify Email",
     "alert_title": "Wrong E-mail or Password!",
     "alert_tagline":"You have entered wrong credentials.",
+    "alert_items": [
+      "Check your card details",
+      "Ensure sufficient funds",
+      "Verify billing address"
+    ],
     "success_message": "Login successful. Tokens saved locally.",
     "error_message": "Unable to sign in. Check your email and password."
   },
@@ -50,6 +57,7 @@
     "cta": "Create account",
     "login_label": "Already registered?",
     "login": "Return to login",
+    "alert_title_error": "Account Creation Failed",
     "alert_title": "Complete the form to continue",
     "alert_tagline": "Please double-check your information before submitting.",
     "success_message": "Signup successful. Check your email for the verification code.",

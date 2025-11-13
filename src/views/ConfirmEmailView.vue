@@ -10,18 +10,18 @@
             </h4>
             <h5 class="text-center">{{ t('confirm_email.title') }}</h5>
             <p class="text-center text-muted">{{ t('confirm_email.tagline') }}</p>
-            <div v-if="state.error" class="alert alert-danger" role="alert">
-              <div class="alert-text">
-                <p class="alert-heading">{{ t('confirm_email.title') }}</p>
-                <p class="alert-body">{{ state.error }}</p>
-              </div>
-            </div>
-            <div v-if="state.success" class="alert alert-success" role="alert">
-              <div class="alert-text">
-                <p class="alert-heading">{{ t('confirm_email.title') }}</p>
-                <p class="alert-body">{{ state.success }}</p>
-              </div>
-            </div>
+            <AlertBox
+              v-if="state.error"
+              type="danger"
+              :title="t('confirm_email.title')"
+              :description="state.error"
+            />
+            <AlertBox
+              v-if="state.success"
+              type="success"
+              :title="t('confirm_email.title')"
+              :description="state.success"
+            />
             <form @submit.prevent="handleSubmit">
               <div class="mb-3">
                 <label for="confirmEmail" class="form-label">{{ t('confirm_email.email') }}</label>
@@ -55,6 +55,7 @@
 import { reactive, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
+import AlertBox from '../components/AlertBox.vue';
 import { authApi } from '../services/authApi';
 
 const { t } = useI18n({ useScope: 'global' });

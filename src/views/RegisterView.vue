@@ -10,25 +10,20 @@
             </h4>
             <h5 class="text-center">{{ t('register.title') }}</h5>
             <p class="text-center text-muted">{{ t('register.tagline') }}</p>
-            <div class="alert alert-info" role="alert">
-              <span class="alert-icon"><i class="bi bi-info-lg"></i></span>
-              <div class="alert-text">
-                <p class="alert-heading">{{ t('register.alert_title') }}</p>
-                <p class="alert-body">{{ t('register.alert_tagline') }}</p>
-              </div>
-            </div>
-            <div v-if="state.error" class="alert alert-danger" role="alert">
-              <div class="alert-text">
-                <p class="alert-heading">{{ t('register.title') }}</p>
-                <p class="alert-body">{{ state.error }}</p>
-              </div>
-            </div>
-            <div v-if="state.success" class="alert alert-success" role="alert">
-              <div class="alert-text">
-                <p class="alert-heading">{{ t('register.title') }}</p>
-                <p class="alert-body">{{ state.success }}</p>
-              </div>
-            </div>
+            <AlertBox
+              v-if="state.error"
+              type="danger"
+              :title="t('register.alert_title_error')"
+              :description="state.error"
+              :icon="bi-times"
+            />
+            <AlertBox
+              v-if="state.success"
+              type="success"
+              :title="t('register.title')"
+              :icon="bi-check-circle"
+              :description="state.success"
+            />
             <form @submit.prevent="handleSubmit">
               <div class="mb-3">
                 <label for="registerName" class="form-label">{{ t('register.name') }}</label>
@@ -71,6 +66,7 @@
 <script setup>
 import { reactive } from 'vue';
 import { useI18n } from 'vue-i18n';
+import AlertBox from '../components/AlertBox.vue';
 import { authApi } from '../services/authApi';
 
 const { t } = useI18n({ useScope: 'global' });

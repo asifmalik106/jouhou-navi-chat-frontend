@@ -10,32 +10,26 @@
                     </h4>
                     <h5 class="text-center">{{ t('login.login') }}</h5>
                     <p class="text-center text-muted">{{ t('login.tagline') }}</p>
-                    <!-- <p class="text-center text-muted">アカウントをお持ちの方はログインしてください。</p> -->
-                    <div class="alert alert-danger" role="alert">
-                        <span class="alert-icon"><i class="bi bi-x-lg"></i></span>
-                        <div class="alert-text">
-                            <p class="alert-heading">{{ t('login.alert_title') }}</p>
-                            <p class="alert-body">{{ t('login.alert_tagline') }}</p>
-                            <!-- <ul>
-                            <li>Check your card details</li>
-                            <li>Ensure sufficient funds</li>
-                            <li>Verify billing address</li>
-                        </ul>
-                        </p> -->
-                        </div>
-                    </div>
-                    <div v-if="state.error" class="alert alert-danger" role="alert">
-                        <div class="alert-text">
-                            <p class="alert-heading">{{ t('login.alert_title') }}</p>
-                            <p class="alert-body">{{ state.error }}</p>
-                        </div>
-                    </div>
-                    <div v-if="state.success" class="alert alert-success" role="alert">
-                        <div class="alert-text">
-                            <p class="alert-heading">{{ t('login.login') }}</p>
-                            <p class="alert-body">{{ state.success }}</p>
-                        </div>
-                    </div>
+                    <!-- <AlertBox
+                      type="danger"
+                      :title="t('login.alert_title')"
+                      :description="t('login.alert_tagline')"
+                      :items="loginAlertItems"
+                    /> -->
+                    <AlertBox
+                      v-if="state.error"
+                      type="danger"
+                      :title="t('login.alert_title')"
+                      :description="state.error"
+                      :icon="bi-times"
+                    />
+                    <AlertBox
+                      v-if="state.success"
+                      type="success"
+                      :title="t('login.login')"
+                      :icon="bi-check-circle"
+                      :description="state.success"
+                    />
                     <form @submit.prevent="handleSubmit">
                         <div class="mb-3">
                             <!-- <label for="exampleInputEmail1" class="form-label">メールアドレス</label> -->
@@ -69,6 +63,10 @@
                     <RouterLink class="btn btn-light btn-full" to="/register">
                       {{ t('login.register') }}
                     </RouterLink>
+                    <p class="text-center text-muted mb-2 mt-4">{{ t('login.verify_label') }}</p>
+                    <RouterLink class="btn btn-light btn-full" to="/confirm-email">
+                      {{ t('login.verify') }}
+                    </RouterLink>
                 </div>
             </div>
         </div>
@@ -77,11 +75,12 @@
   </section>
 </template>
 <script setup>
-import { reactive } from 'vue';
+import { reactive, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
+import AlertBox from '../components/AlertBox.vue';
 import { authApi, persistTokens } from '../services/authApi';
 
-const { t } = useI18n({ useScope: 'global' });
+const { t, tm } = useI18n({ useScope: 'global' });
 
 const form = reactive({
   email: '',
@@ -92,6 +91,11 @@ const state = reactive({
   loading: false,
   error: '',
   success: '',
+});
+
+const loginAlertItems = computed(() => {
+  const items = tm('login.alert_items');
+  return Array.isArray(items) ? items : [];
 });
 
 const handleSubmit = async () => {
