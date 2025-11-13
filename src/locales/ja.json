@@ -35,6 +35,8 @@
     "forget_password": "パスワードをお忘れですか？",
     "register_label": "アカウントの登録がお済みでない方",
     "register": "登録する",
+    "verify_label": "メールを確認しますか？",
+    "verify": "メール確認",
     "alert_title": "ログイン認証情報が正しくありません",
     "alert_tagline": "入力内容をご確認してもう一度お試しください。",
     "alert_items": [
@@ -55,6 +57,7 @@
     "cta": "アカウントを作成",
     "login_label": "すでに登録済みですか？",
     "login": "ログインに戻る",
+    "alert_title_error": "アカウント作成に失敗しました",
     "alert_title": "続行するには入力内容が必要です",
     "alert_tagline": "送信前に情報をもう一度ご確認ください。",
     "success_message": "サインアップが完了しました。確認コードをメールで送信しました。",
