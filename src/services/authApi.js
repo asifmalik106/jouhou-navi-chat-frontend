@@ -43,6 +43,12 @@ export const authApi = {
       body: JSON.stringify(payload),
     });
   },
+  resendConfirmation(payload) {
+    return request('/auth/resend', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    });
+  },
   login(payload) {
     return request('/auth/login', {
       method: 'POST',

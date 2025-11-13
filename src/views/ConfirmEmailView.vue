@@ -76,9 +76,33 @@
                 {{ t("confirm_email.cta") }}
               </button>
             </form>
-            <p class="text-center text-muted mb-2 mt-2">
-              {{ t("confirm_email.resend") }}
-            </p>
+            <div class="resend-box text-center mt-3 mb-3">
+              <p class="text-muted small mb-2">
+                {{ t("confirm_email.resend_prompt") }}
+              </p>
+              <button
+                type="button"
+                class="btn btn-outline-dark btn-full"
+                :disabled="!canResend"
+                @click="handleResend"
+              >
+                <span
+                  v-if="state.resendLoading"
+                  class="spinner-border spinner-border-sm me-2"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+                <span>
+                  {{
+                    canResend
+                      ? t("confirm_email.resend_button")
+                      : t("confirm_email.resend_timer", {
+                          seconds: cooldownSeconds,
+                        })
+                  }}
+                </span>
+              </button>
+            </div>
             <RouterLink class="btn btn-light btn-full mb-2" to="/register">
               {{ t("register.register") }}
             </RouterLink>
@@ -93,7 +117,14 @@
 </template>
 
 <script setup>
-import { reactive, watch, computed } from "vue";
+import {
+  reactive,
+  watch,
+  computed,
+  ref,
+  onMounted,
+  onBeforeUnmount,
+} from "vue";
 import { useRoute } from "vue-router";
 import { useI18n } from "vue-i18n";
 import AlertBox from "../components/AlertBox.vue";
@@ -102,6 +133,7 @@ import { authApi } from "../services/authApi";
 const { t } = useI18n({ useScope: "global" });
 const route = useRoute();
 const REGISTRATION_NOTICE_KEY = "registration_success_notice";
+const RESEND_COOLDOWN_MS = 60 * 1000;
 
 const form = reactive({
   email: route.query.email ?? "",
@@ -113,14 +145,40 @@ const state = reactive({
   error: "",
   success: "",
   notice: "",
-  emailClass: "form-control"
+  emailClass: "form-control",
+  resendLoading: false,
+  cooldownExpiresAt: null,
 });
 
 const isEmailLocked = computed(() => Boolean(route.query.email));
+const now = ref(Date.now());
+let tickerId = null;
+
+const startTicker = () => {
+  if (typeof window === "undefined" || tickerId) return;
+  tickerId = window.setInterval(() => {
+    now.value = Date.now();
+  }, 1000);
+};
+
+const stopTicker = () => {
+  if (!tickerId) return;
+  window.clearInterval(tickerId);
+  tickerId = null;
+};
+
+onMounted(() => {
+  startTicker();
+});
+
+onBeforeUnmount(() => {
+  stopTicker();
+});
 
 const applyRegistrationNotice = () => {
   if (typeof window === "undefined") {
     state.notice = "";
+    state.emailClass = "form-control";
     return;
   }
 
@@ -128,6 +186,7 @@ const applyRegistrationNotice = () => {
     const raw = sessionStorage.getItem(REGISTRATION_NOTICE_KEY);
     if (!raw) {
       state.notice = "";
+      state.emailClass = "form-control";
       return;
     }
     const record = JSON.parse(raw);
@@ -138,15 +197,35 @@ const applyRegistrationNotice = () => {
       record?.email && form.email && record.email === form.email;
     if (expired || !emailMatches) {
       sessionStorage.removeItem(REGISTRATION_NOTICE_KEY);
-      state.notice = "form-control-plaintext";
+      state.notice = "";
+      state.emailClass = "form-control";
       return;
     }
     state.notice = t("confirm_email.registration_notice");
-    state.emailClass = "form-control-plaintext"
+    state.emailClass = "form-control-plaintext";
     sessionStorage.removeItem(REGISTRATION_NOTICE_KEY);
   } catch {
     state.notice = "";
+    state.emailClass = "form-control";
   }
+};
+
+const cooldownSeconds = computed(() => {
+  if (!state.cooldownExpiresAt) return 0;
+  const remaining = Math.max(0, state.cooldownExpiresAt - now.value);
+  return Math.ceil(remaining / 1000);
+});
+
+const canResend = computed(() => {
+  return (
+    Boolean(form.email) &&
+    !state.resendLoading &&
+    cooldownSeconds.value === 0
+  );
+});
+
+const startCooldown = () => {
+  state.cooldownExpiresAt = Date.now() + RESEND_COOLDOWN_MS;
 };
 
 watch(
@@ -184,6 +263,24 @@ watch(
     }
   }
 );
+
+const handleResend = async () => {
+  if (!form.email || !canResend.value) return;
+  state.resendLoading = true;
+  state.error = "";
+
+  try {
+    await authApi.resendConfirmation({
+      email: form.email,
+    });
+    state.notice = t("confirm_email.resend_success");
+    startCooldown();
+  } catch (error) {
+    state.error = error.message || t("confirm_email.error_message");
+  } finally {
+    state.resendLoading = false;
+  }
+};
 </script>
 
 <style scoped>
