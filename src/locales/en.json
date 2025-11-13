@@ -36,7 +36,9 @@
     "register_label": "Don't have an account?",
     "register": "Register",
     "alert_title": "Wrong E-mail or Password!",
-    "alert_tagline":"You have entered wrong credentials."
+    "alert_tagline":"You have entered wrong credentials.",
+    "success_message": "Login successful. Tokens saved locally.",
+    "error_message": "Unable to sign in. Check your email and password."
   },
   "register": {
     "title": "Create your account",
@@ -49,7 +51,10 @@
     "login_label": "Already registered?",
     "login": "Return to login",
     "alert_title": "Complete the form to continue",
-    "alert_tagline": "Please double-check your information before submitting."
+    "alert_tagline": "Please double-check your information before submitting.",
+    "success_message": "Signup successful. Check your email for the verification code.",
+    "error_message": "We couldn't complete your signup. Please try again.",
+    "verify_cta": "Verify email"
   },
   "forgot": {
     "title": "Reset your password",
@@ -59,6 +64,31 @@
     "login_label": "Remembered it?",
     "login": "Back to login",
     "alert_title": "Need help signing in?",
-    "alert_tagline": "If the email is valid, you'll receive password reset instructions shortly."
+    "alert_tagline": "If the email is valid, you'll receive password reset instructions shortly.",
+    "success_message": "Password reset code sent. Check your email.",
+    "error_message": "We couldn't send the reset email. Please try again.",
+    "confirm_cta": "Enter reset code"
+  },
+  "confirm_email": {
+    "title": "Verify your email",
+    "tagline": "Paste the code we emailed you to complete registration.",
+    "email": "E-mail",
+    "code": "Verification code",
+    "cta": "Confirm email",
+    "resend": "Need another code?",
+    "login_cta": "Continue to login",
+    "success_message": "Email verified successfully. You can log in now.",
+    "error_message": "Verification failed. Check the code and try again."
+  },
+  "forgot_confirm": {
+    "title": "Set a new password",
+    "tagline": "Enter the reset code from your email along with a new password.",
+    "email": "E-mail",
+    "code": "Reset code",
+    "new_password": "New password",
+    "cta": "Update password",
+    "login_cta": "Return to login",
+    "success_message": "Password reset successfully. You can log in with the new password.",
+    "error_message": "We couldn't reset your password. Please recheck the code."
   }
 }

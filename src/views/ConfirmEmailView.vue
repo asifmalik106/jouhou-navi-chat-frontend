@@ -8,45 +8,41 @@
               {{ t('app_name.title') }}
               <sup class="badge text-bg-dark logo-sup-text">{{ t('app_name.tag') }}</sup>
             </h4>
-            <h5 class="text-center">{{ t('forgot.title') }}</h5>
-            <p class="text-center text-muted">{{ t('forgot.tagline') }}</p>
-            <div class="alert alert-warning" role="alert">
-              <span class="alert-icon"><i class="bi bi-exclamation-lg"></i></span>
-              <div class="alert-text">
-                <p class="alert-heading">{{ t('forgot.alert_title') }}</p>
-                <p class="alert-body">{{ t('forgot.alert_tagline') }}</p>
-              </div>
-            </div>
+            <h5 class="text-center">{{ t('confirm_email.title') }}</h5>
+            <p class="text-center text-muted">{{ t('confirm_email.tagline') }}</p>
             <div v-if="state.error" class="alert alert-danger" role="alert">
               <div class="alert-text">
-                <p class="alert-heading">{{ t('forgot.title') }}</p>
+                <p class="alert-heading">{{ t('confirm_email.title') }}</p>
                 <p class="alert-body">{{ state.error }}</p>
               </div>
             </div>
             <div v-if="state.success" class="alert alert-success" role="alert">
               <div class="alert-text">
-                <p class="alert-heading">{{ t('forgot.title') }}</p>
+                <p class="alert-heading">{{ t('confirm_email.title') }}</p>
                 <p class="alert-body">{{ state.success }}</p>
               </div>
             </div>
             <form @submit.prevent="handleSubmit">
               <div class="mb-3">
-                <label for="forgotEmail" class="form-label">{{ t('forgot.email') }}</label>
-                <input v-model="email" type="email" class="form-control" id="forgotEmail" required />
+                <label for="confirmEmail" class="form-label">{{ t('confirm_email.email') }}</label>
+                <input v-model="form.email" type="email" class="form-control" id="confirmEmail" required />
+              </div>
+              <div class="mb-3">
+                <label for="confirmCode" class="form-label">{{ t('confirm_email.code') }}</label>
+                <input v-model="form.code" type="text" class="form-control" id="confirmCode" required />
               </div>
               <button type="submit" class="btn btn-dark btn-full mb-3" :disabled="state.loading">
                 <span v-if="state.loading" class="spinner-border spinner-border-sm me-2" role="status"
                   aria-hidden="true"></span>
-                {{ t('forgot.cta') }}
+                {{ t('confirm_email.cta') }}
               </button>
             </form>
-            <p class="text-center text-muted mb-2 mt-2">{{ t('forgot.login_label') }}</p>
-            <RouterLink class="btn btn-light btn-full" to="/login">
-              {{ t('forgot.login') }}
+            <p class="text-center text-muted mb-2 mt-2">{{ t('confirm_email.resend') }}</p>
+            <RouterLink class="btn btn-light btn-full mb-2" to="/register">
+              {{ t('register.register') }}
             </RouterLink>
-            <RouterLink v-if="state.canConfirm" class="btn btn-outline-dark btn-full mt-2"
-              :to="{ name: 'forgot-confirm', query: { email } }">
-              {{ t('forgot.confirm_cta') }}
+            <RouterLink class="btn btn-outline-dark btn-full" to="/login">
+              {{ t('confirm_email.login_cta') }}
             </RouterLink>
           </div>
         </div>
@@ -56,19 +52,33 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
+import { reactive, watch } from 'vue';
+import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { authApi } from '../services/authApi';
 
 const { t } = useI18n({ useScope: 'global' });
-const email = ref('');
+const route = useRoute();
+
+const form = reactive({
+  email: route.query.email ?? '',
+  code: '',
+});
 
 const state = reactive({
   loading: false,
   error: '',
   success: '',
-  canConfirm: false,
 });
+
+watch(
+  () => route.query.email,
+  (value) => {
+    if (value) {
+      form.email = value;
+    }
+  },
+);
 
 const handleSubmit = async () => {
   state.loading = true;
@@ -76,13 +86,13 @@ const handleSubmit = async () => {
   state.success = '';
 
   try {
-    await authApi.forgot({
-      email: email.value,
+    await authApi.confirmEmail({
+      email: form.email,
+      code: form.code,
     });
-    state.success = t('forgot.success_message');
-    state.canConfirm = true;
+    state.success = t('confirm_email.success_message');
   } catch (error) {
-    state.error = error.message || t('forgot.error_message');
+    state.error = error.message || t('confirm_email.error_message');
   } finally {
     state.loading = false;
   }
