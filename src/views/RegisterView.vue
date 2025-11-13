@@ -52,10 +52,10 @@
             <RouterLink class="btn btn-light btn-full mb-2" to="/login">
               {{ t('register.login') }}
             </RouterLink>
-            <RouterLink v-if="state.canVerify" class="btn btn-outline-dark btn-full"
-              :to="{ name: 'confirm-email', query: { email: form.email } }">
-              {{ t('register.verify_cta') }}
-            </RouterLink>
+            <p class="text-center text-muted mb-2 mt-3">{{ t('login.verify_label') }}</p>
+                    <RouterLink class="btn btn-light btn-full" to="/confirm-email">
+                      {{ t('login.verify') }}
+                    </RouterLink>
           </div>
         </div>
       </div>

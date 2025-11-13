@@ -63,7 +63,7 @@
                     <RouterLink class="btn btn-light btn-full" to="/register">
                       {{ t('login.register') }}
                     </RouterLink>
-                    <p class="text-center text-muted mb-2 mt-4">{{ t('login.verify_label') }}</p>
+                    <p class="text-center text-muted mb-2 mt-3">{{ t('login.verify_label') }}</p>
                     <RouterLink class="btn btn-light btn-full" to="/confirm-email">
                       {{ t('login.verify') }}
                     </RouterLink>
