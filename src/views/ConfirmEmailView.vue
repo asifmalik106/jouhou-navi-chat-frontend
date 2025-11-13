@@ -25,7 +25,15 @@
             <form @submit.prevent="handleSubmit">
               <div class="mb-3">
                 <label for="confirmEmail" class="form-label">{{ t('confirm_email.email') }}</label>
-                <input v-model="form.email" type="email" class="form-control" id="confirmEmail" required />
+                <input
+                  v-model="form.email"
+                  type="email"
+                  class="form-control"
+                  id="confirmEmail"
+                  :readonly="isEmailLocked"
+                  :aria-readonly="isEmailLocked"
+                  required
+                />
               </div>
               <div class="mb-3">
                 <label for="confirmCode" class="form-label">{{ t('confirm_email.code') }}</label>
@@ -52,7 +60,7 @@
 </template>
 
 <script setup>
-import { reactive, watch } from 'vue';
+import { reactive, watch, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import AlertBox from '../components/AlertBox.vue';
@@ -72,13 +80,14 @@ const state = reactive({
   success: '',
 });
 
+const isEmailLocked = computed(() => Boolean(route.query.email));
+
 watch(
   () => route.query.email,
   (value) => {
-    if (value) {
-      form.email = value;
-    }
+    form.email = value ?? '';
   },
+  { immediate: true },
 );
 
 const handleSubmit = async () => {

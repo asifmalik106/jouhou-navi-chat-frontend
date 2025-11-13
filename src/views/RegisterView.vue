@@ -15,13 +15,11 @@
               type="danger"
               :title="t('register.alert_title_error')"
               :description="state.error"
-              :icon="bi-times"
             />
             <AlertBox
               v-if="state.success"
               type="success"
               :title="t('register.title')"
-              :icon="bi-check-circle"
               :description="state.success"
             />
             <form @submit.prevent="handleSubmit">
@@ -49,13 +47,9 @@
               </button>
             </form>
             <p class="text-center text-muted mb-2 mt-2">{{ t('register.login_label') }}</p>
-            <RouterLink class="btn btn-light btn-full mb-2" to="/login">
+            <RouterLink class="btn btn-light btn-full" to="/login">
               {{ t('register.login') }}
             </RouterLink>
-            <p class="text-center text-muted mb-2 mt-3">{{ t('login.verify_label') }}</p>
-                    <RouterLink class="btn btn-light btn-full" to="/confirm-email">
-                      {{ t('login.verify') }}
-                    </RouterLink>
           </div>
         </div>
       </div>
@@ -65,11 +59,13 @@
 
 <script setup>
 import { reactive } from 'vue';
+import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import AlertBox from '../components/AlertBox.vue';
 import { authApi } from '../services/authApi';
 
 const { t } = useI18n({ useScope: 'global' });
+const router = useRouter();
 
 const form = reactive({
   name: '',
@@ -82,7 +78,6 @@ const state = reactive({
   loading: false,
   error: '',
   success: '',
-  canVerify: false,
 });
 
 const handleSubmit = async () => {
@@ -103,7 +98,10 @@ const handleSubmit = async () => {
       password: form.password,
     });
     state.success = t('register.success_message');
-    state.canVerify = true;
+    await router.push({
+      name: 'confirm-email',
+      query: { email: form.email },
+    });
   } catch (error) {
     state.error = error.message || t('register.error_message');
   } finally {
