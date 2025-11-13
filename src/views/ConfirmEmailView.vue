@@ -51,16 +51,25 @@
                 />
               </div>
               <div class="mb-3">
-                <label for="confirmCode" class="form-label">{{
-                  t("confirm_email.code")
-                }}</label>
-                <input
-                  v-model="form.code"
-                  type="text"
-                  class="form-control"
-                  id="confirmCode"
-                  required
-                />
+                <label class="form-label">
+                  {{ t("confirm_email.code") }}
+                </label>
+                <div class="otp-group">
+                  <input
+                    v-for="(_, index) in CODE_LENGTH"
+                    :key="`otp-${index}`"
+                    ref="otpInputRefs"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="1"
+                    autocomplete="one-time-code"
+                    class="form-control otp-input"
+                    :value="codeDigits[index]"
+                    @input="(e) => handleDigitInput(index, e)"
+                    @keydown="(e) => handleDigitKeydown(index, e)"
+                    @paste="(e) => handlePaste(e)"
+                  />
+                </div>
               </div>
               <button
                 type="submit"
@@ -124,6 +133,7 @@ import {
   ref,
   onMounted,
   onBeforeUnmount,
+  onBeforeUpdate,
 } from "vue";
 import { useRoute } from "vue-router";
 import { useI18n } from "vue-i18n";
@@ -133,6 +143,7 @@ import { authApi } from "../services/authApi";
 const { t } = useI18n({ useScope: "global" });
 const route = useRoute();
 const REGISTRATION_NOTICE_KEY = "registration_success_notice";
+const CODE_LENGTH = 6;
 const RESEND_COOLDOWN_MS = 60 * 1000;
 
 const form = reactive({
@@ -153,6 +164,16 @@ const state = reactive({
 const isEmailLocked = computed(() => Boolean(route.query.email));
 const now = ref(Date.now());
 let tickerId = null;
+const otpInputRefs = ref([]);
+const codeDigits = ref(Array(CODE_LENGTH).fill(""));
+
+const resetCodeDigits = () => {
+  codeDigits.value = Array(CODE_LENGTH).fill("");
+  form.code = "";
+  otpInputRefs.value.forEach((input) => {
+    if (input) input.value = "";
+  });
+};
 
 const startTicker = () => {
   if (typeof window === "undefined" || tickerId) return;
@@ -173,6 +194,10 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   stopTicker();
+});
+
+onBeforeUpdate(() => {
+  otpInputRefs.value = [];
 });
 
 const applyRegistrationNotice = () => {
@@ -232,6 +257,7 @@ watch(
   () => route.query.email,
   (value) => {
     form.email = value ?? "";
+    resetCodeDigits();
     applyRegistrationNotice();
   },
   { immediate: true }
@@ -241,6 +267,7 @@ const handleSubmit = async () => {
   state.loading = true;
   state.error = "";
   state.success = "";
+  form.code = codeDigits.value.join("");
 
   try {
     await authApi.confirmEmail({
@@ -281,10 +308,94 @@ const handleResend = async () => {
     state.resendLoading = false;
   }
 };
+
+const focusInput = (index) => {
+  const target = otpInputRefs.value[index];
+  if (target) {
+    target.focus();
+    target.select();
+  }
+};
+
+const handleDigitInput = (index, event) => {
+  const { value } = event.target;
+  const digit = value.replace(/\D/g, "").slice(-1) || "";
+  codeDigits.value[index] = digit;
+  event.target.value = digit;
+  form.code = codeDigits.value.join("");
+
+  if (digit && index < CODE_LENGTH - 1) {
+    focusInput(index + 1);
+  }
+};
+
+const handleDigitKeydown = (index, event) => {
+  if (event.key === "Backspace") {
+    event.preventDefault();
+    if (codeDigits.value[index]) {
+      codeDigits.value[index] = "";
+      form.code = codeDigits.value.join("");
+      const input = otpInputRefs.value[index];
+      if (input) input.value = "";
+    } else if (index > 0) {
+      focusInput(index - 1);
+    }
+    return;
+  }
+
+  if (event.key === "ArrowLeft" && index > 0) {
+    event.preventDefault();
+    focusInput(index - 1);
+  } else if (event.key === "ArrowRight" && index < CODE_LENGTH - 1) {
+    event.preventDefault();
+    focusInput(index + 1);
+  }
+};
+
+const handlePaste = (event) => {
+  event.preventDefault();
+  const text = event.clipboardData.getData("text").replace(/\D/g, "").slice(0, CODE_LENGTH);
+  if (!text) return;
+
+  text.split("").forEach((char, idx) => {
+    codeDigits.value[idx] = char;
+    const input = otpInputRefs.value[idx];
+    if (input) {
+      input.value = char;
+    }
+  });
+
+  form.code = codeDigits.value.join("");
+  const nextIndex = Math.min(text.length, CODE_LENGTH - 1);
+  focusInput(nextIndex);
+};
 </script>
 
 <style scoped>
 .view {
   min-height: 60vh;
+}
+
+.otp-group {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(48px, 1fr));
+  gap: 0.75rem;
+}
+
+.otp-input {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.otp-input::-webkit-outer-spin-button,
+.otp-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.otp-input[type="number"] {
+  -moz-appearance: textfield;
 }
 </style>
