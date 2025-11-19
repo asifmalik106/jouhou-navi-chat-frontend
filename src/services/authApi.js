@@ -128,6 +128,13 @@ export function getStoredTokens() {
   }
 }
 
+export function isAuthenticated() {
+  const tokens = getStoredTokens();
+  if (!tokens?.accessToken) return false;
+  if (tokens.expiresAt && Date.now() >= tokens.expiresAt) return false;
+  return true;
+}
+
 export function clearStoredTokens() {
   localStorage.removeItem(TOKEN_STORAGE_KEY);
   emitAuthChange();

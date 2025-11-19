@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import { isAuthenticated } from '../services/authApi';
 
 const routes = [
   {
@@ -20,11 +21,13 @@ const routes = [
     path: '/profile',
     name: 'profile',
     component: () => import('../views/ProfileView.vue'),
+    meta: { requiresAuth: true },
   },
   {
     path: '/login',
     name: 'login',
     component: () => import('../views/LoginView.vue'),
+    meta: { redirectIfAuth: true },
   },
   {
     path: '/register',
@@ -51,6 +54,24 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+});
+
+router.beforeEach((to) => {
+  const authed = isAuthenticated();
+  if (to.meta?.requiresAuth && !authed) {
+    return {
+      name: 'login',
+      query: { redirect: to.fullPath },
+    };
+  }
+
+  if (to.meta?.redirectIfAuth && authed) {
+    return {
+      name: 'profile',
+    };
+  }
+
+  return true;
 });
 
 export default router;

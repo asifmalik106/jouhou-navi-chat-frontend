@@ -76,11 +76,14 @@
 </template>
 <script setup>
 import { reactive, computed } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import AlertBox from '../components/AlertBox.vue';
 import { authApi, persistTokens } from '../services/authApi';
 
 const { t, tm } = useI18n({ useScope: 'global' });
+const router = useRouter();
+const route = useRoute();
 
 const form = reactive({
   email: '',
@@ -111,6 +114,11 @@ const handleSubmit = async () => {
     persistTokens(tokens);
     state.success = t('login.success_message');
     form.password = '';
+    const redirectTarget =
+      typeof route.query.redirect === 'string'
+        ? route.query.redirect
+        : '/profile';
+    router.replace(redirectTarget);
   } catch (error) {
     state.error = error.message || t('login.error_message');
   } finally {
