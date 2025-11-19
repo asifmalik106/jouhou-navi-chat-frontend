@@ -14,7 +14,8 @@
     "about": "概要",
     "contact": "お問い合わせ",
     "login": "ログイン",
-    "profile": "プロフィール"
+    "profile": "プロフィール",
+    "products": "商品管理"
   },
   "home": {
     "title": "情報ナビチャットへようこそ",
@@ -140,5 +141,54 @@
       "error": "ログアウトできませんでした。時間をおいてもう一度お試しください。",
       "missing_token": "ログアウトするにはログインが必要です。"
     }
+  },
+  "product": {
+    "title": "商品カタログ",
+    "subtitle": "ストア在庫を一か所で管理しましょう。",
+    "actions": {
+      "refresh": "一覧を更新",
+      "cancel_edit": "編集をキャンセル",
+      "create": "商品を追加",
+      "update": "商品を更新",
+      "edit": "編集",
+      "delete": "削除"
+    },
+    "form": {
+      "create_title": "新しい商品を登録",
+      "edit_title": "商品を更新",
+      "subtitle": "公開前に魅力的な情報を入力してください。",
+      "fields": {
+        "title": "タイトル",
+        "category": "カテゴリ",
+        "category_placeholder": "カテゴリを入力",
+        "featured_image": "メイン画像",
+        "description": "説明",
+        "stock": "在庫",
+        "price": "価格",
+        "publish": "すぐ公開する"
+      },
+      "preview": "画像プレビュー"
+    },
+    "list": {
+      "title": "商品一覧",
+      "subtitle": "API と同期された全ての商品です。",
+      "empty": "まだ商品がありません。まずは上部のフォームから追加してください。",
+      "price": "価格: {price}",
+      "stock": "在庫: {stock}"
+    },
+    "badges": {
+      "published": "公開中",
+      "draft": "下書き"
+    },
+    "messages": {
+      "created": "商品を登録しました。",
+      "updated": "商品を更新しました。",
+      "save_error": "商品を保存できませんでした。",
+      "fetch_error": "商品一覧を取得できませんでした。",
+      "delete_error": "商品を削除できませんでした。",
+      "confirm_delete": "{title} を削除しますか？",
+      "image_error": "画像を読み込めませんでした。"
+    },
+    "categories": ["アクセサリー", "書籍", "ファッション", "ガジェット", "ホーム"]
   }
 }

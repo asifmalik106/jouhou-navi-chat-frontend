@@ -14,7 +14,8 @@
     "about": "About",
     "contact": "Contact",
     "login": "Login",
-    "profile": "Profile"
+    "profile": "Profile",
+    "products": "Products"
   },
   "home": {
     "title": "Welcome to Jouhou Navi Chat",
@@ -140,5 +141,54 @@
       "error": "Unable to log out. Please try again.",
       "missing_token": "You must be signed in to log out."
     }
+  },
+  "product": {
+    "title": "Product catalog",
+    "subtitle": "Manage your storefront inventory from one place.",
+    "actions": {
+      "refresh": "Refresh list",
+      "cancel_edit": "Cancel edit",
+      "create": "Add product",
+      "update": "Update product",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "form": {
+      "create_title": "Add a new product",
+      "edit_title": "Update product",
+      "subtitle": "Provide marketing friendly details before publishing.",
+      "fields": {
+        "title": "Title",
+        "category": "Category",
+        "category_placeholder": "Enter category",
+        "featured_image": "Featured image",
+        "description": "Description",
+        "stock": "Stock",
+        "price": "Price",
+        "publish": "Publish immediately"
+      },
+      "preview": "Image preview"
+    },
+    "list": {
+      "title": "Product list",
+      "subtitle": "All items synced with the API.",
+      "empty": "No products yet. Start by adding one above.",
+      "price": "Price: {price}",
+      "stock": "Stock: {stock}"
+    },
+    "badges": {
+      "published": "Published",
+      "draft": "Draft"
+    },
+    "messages": {
+      "created": "Product created successfully.",
+      "updated": "Product updated successfully.",
+      "save_error": "We couldn't save this product.",
+      "fetch_error": "Unable to load products.",
+      "delete_error": "Unable to delete product.",
+      "confirm_delete": "Delete {title}?",
+      "image_error": "Unable to read the selected image."
+    },
+    "categories": ["Accessories", "Books", "Fashion", "Gadgets", "Home"]
   }
 }

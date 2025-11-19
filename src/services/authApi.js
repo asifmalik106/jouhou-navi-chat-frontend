@@ -1,4 +1,4 @@
-const API_BASE_URL =
+export const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL ??
   'https://ypg7ykfvbwreuowmqrxtk2zjua0clirn.lambda-url.us-east-2.on.aws';
 
