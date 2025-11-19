@@ -162,6 +162,7 @@
       "cancel_edit": "編集をキャンセル",
       "create": "商品を追加",
       "update": "商品を更新",
+      "view": "プロフィールを見る",
       "edit": "編集",
       "delete": "削除"
     },
@@ -201,6 +202,33 @@
       "confirm_delete": "{title} を削除しますか？",
       "image_error": "画像を読み込めませんでした。"
     },
-    "categories": ["アクセサリー", "書籍", "ファッション", "ガジェット", "ホーム"]
+    "categories": ["アクセサリー", "書籍", "ファッション", "ガジェット", "ホーム"],
+    "profile": {
+      "title": "商品プロフィール",
+      "subtitle": "DynamoDB から取得した詳細情報です。",
+      "untitled": "名称未設定の商品",
+      "back_to_list": "カタログに戻る",
+      "edit_cta": "商品を編集",
+      "media": "メディアとタイムスタンプ",
+      "no_media": "画像が登録されていません",
+      "created": "作成日時",
+      "updated": "更新日時",
+      "details": "商品詳細",
+      "category": "カテゴリ",
+      "price": "価格",
+      "stock": "在庫",
+      "publish": "公開状態",
+      "description": "商品説明",
+      "missing_id": "商品IDが必要です。",
+      "load_error": "商品を読み込めませんでした。"
+    },
+    "edit": {
+      "title": "商品を編集",
+      "subtitle": "保存前に情報や画像を更新してください。",
+      "back_to_profile": "プロフィールに戻る",
+      "save_cta": "変更を保存"
+    },
+    "boolean_yes": "はい",
+    "boolean_no": "いいえ"
   }
 }

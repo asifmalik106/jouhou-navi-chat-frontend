@@ -230,17 +230,22 @@
                         <span>{{ t('product.list.stock', { stock: product.stock }) }}</span>
                       </div>
                     </div>
-                    <div class="card-footer bg-transparent border-0 d-flex gap-2">
-                      <button
-                        type="button"
-                        class="btn btn-outline-dark btn-sm w-50"
-                        @click="handleEdit(product)"
+                    <div class="card-footer bg-transparent border-0 d-flex flex-wrap gap-2">
+                      <RouterLink
+                        class="btn btn-outline-secondary btn-sm flex-fill"
+                        :to="{ name: 'product-profile', params: { id: product.id } }"
+                      >
+                        {{ t('product.actions.view') }}
+                      </RouterLink>
+                      <RouterLink
+                        class="btn btn-outline-dark btn-sm flex-fill"
+                        :to="{ name: 'product-edit', params: { id: product.id } }"
                       >
                         {{ t('product.actions.edit') }}
-                      </button>
+                      </RouterLink>
                       <button
                         type="button"
-                        class="btn btn-outline-danger btn-sm w-50"
+                        class="btn btn-outline-danger btn-sm flex-fill"
                         @click="handleDelete(product)"
                       >
                         {{ t('product.actions.delete') }}

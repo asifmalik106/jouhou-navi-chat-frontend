@@ -50,6 +50,11 @@ export const productApi = {
       method: 'GET',
     });
   },
+  get(id) {
+    return request(`/products/${id}`, {
+      method: 'GET',
+    });
+  },
   create(payload) {
     return request('/products', {
       method: 'POST',

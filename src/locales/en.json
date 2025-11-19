@@ -162,6 +162,7 @@
       "cancel_edit": "Cancel edit",
       "create": "Add product",
       "update": "Update product",
+      "view": "View profile",
       "edit": "Edit",
       "delete": "Delete"
     },
@@ -201,6 +202,33 @@
       "confirm_delete": "Delete {title}?",
       "image_error": "Unable to read the selected image."
     },
-    "categories": ["Accessories", "Books", "Fashion", "Gadgets", "Home"]
+    "categories": ["Accessories", "Books", "Fashion", "Gadgets", "Home"],
+    "profile": {
+      "title": "Product profile",
+      "subtitle": "Detailed information pulled directly from DynamoDB.",
+      "untitled": "Untitled product",
+      "back_to_list": "Back to catalog",
+      "edit_cta": "Edit product",
+      "media": "Media & timestamps",
+      "no_media": "No featured image uploaded",
+      "created": "Created",
+      "updated": "Updated",
+      "details": "Product details",
+      "category": "Category",
+      "price": "Price",
+      "stock": "Stock",
+      "publish": "Published",
+      "description": "Description",
+      "missing_id": "Product id is required.",
+      "load_error": "Unable to load the requested product."
+    },
+    "edit": {
+      "title": "Edit product",
+      "subtitle": "Update copy or upload a fresh image before saving.",
+      "back_to_profile": "Back to profile",
+      "save_cta": "Save changes"
+    },
+    "boolean_yes": "Yes",
+    "boolean_no": "No"
   }
 }
