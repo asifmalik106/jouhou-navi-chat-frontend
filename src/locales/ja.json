@@ -15,7 +15,8 @@
     "contact": "お問い合わせ",
     "login": "ログイン",
     "profile": "プロフィール",
-    "products": "商品管理"
+    "products": "商品管理",
+    "chat": "チャット"
   },
   "home": {
     "title": "情報ナビチャットへようこそ",
@@ -28,6 +29,17 @@
   "contact": {
     "title": "お問い合わせ",
     "message": "詳細はチームまでご連絡ください。"
+  },
+  "chat": {
+    "title": "商品アシスタント",
+    "subtitle": "カタログについて自然な質問をすると、最も関連する商品を検索して紹介します。",
+    "query_label": "質問を入力",
+    "query_placeholder": "どの洗顔料がニキビに効果的？",
+    "cta": "送信",
+    "error_message": "回答を取得できませんでした。時間を置いて再度お試しください。",
+    "empty_state_title": "会話を始めましょう",
+    "empty_state_body": "気になる悩みや成分、予算などを入力すると、条件に合う商品を提案します。",
+    "assistant_reply": "アシスタントの回答"
   },
   "login": {
     "login": "ログイン",

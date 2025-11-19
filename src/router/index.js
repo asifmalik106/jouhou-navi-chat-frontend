@@ -30,6 +30,12 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
+    path: '/chat',
+    name: 'chat',
+    component: () => import('../views/ChatView.vue'),
+    meta: { requiresAuth: true },
+  },
+  {
     path: '/login',
     name: 'login',
     component: () => import('../views/LoginView.vue'),

@@ -15,7 +15,8 @@
     "contact": "Contact",
     "login": "Login",
     "profile": "Profile",
-    "products": "Products"
+    "products": "Products",
+    "chat": "Chat"
   },
   "home": {
     "title": "Welcome to Jouhou Navi Chat",
@@ -28,6 +29,17 @@
   "contact": {
     "title": "Contact",
     "message": "Reach out to the team for more information."
+  },
+  "chat": {
+    "title": "Product assistant",
+    "subtitle": "Ask natural questions about catalog items and we will retrieve the most relevant products for you.",
+    "query_label": "Ask a question",
+    "query_placeholder": "Which facewash helps acne?",
+    "cta": "Send",
+    "error_message": "We could not fetch answers right now. Please try again later.",
+    "empty_state_title": "Start the conversation",
+    "empty_state_body": "Describe a concern, ingredient, or budget and the assistant will respond with matching products.",
+    "assistant_reply": "Assistant reply"
   },
   "login":{
     "login":"Login",
