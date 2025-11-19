@@ -20,8 +20,53 @@
     "chat": "チャット"
   },
   "home": {
-    "title": "情報ナビチャットへようこそ",
-    "message": "すべてのルートで Vue 3 のローカライズされたコンテンツを体験しましょう。"
+    "hero_eyebrow": "AI ネイティブ基盤",
+    "hero_title": "カタログをリアルタイムのプロダクトインテリジェンスに",
+    "hero_subtitle": "商品を DynamoDB に格納し、OpenAI API が自動でベクトル化。VectorDB からの検索結果を元にチャットで回答します。",
+    "hero_primary_cta": "カタログと会話する",
+    "hero_secondary_cta": "商品を管理する",
+    "stats": {
+      "vector_value": "12K+",
+      "vector_label": "インデックス済みベクトル",
+      "products_value": "800+",
+      "products_label": "同期済み商品",
+      "latency_value": "1.2 秒",
+      "latency_label": "平均応答時間"
+    },
+    "pipeline": {
+      "title": "OpenAI が支えるワークフロー",
+      "steps": {
+        "capture": {
+          "title": "1. 情報を集約",
+          "body": "構造化データでも自由記述でも、すべて DynamoDB に安全に保存します。"
+        },
+        "vectorize": {
+          "title": "2. 自動ベクトル化",
+          "body": "OpenAI 埋め込みが数秒でベクトルを生成し、VectorDB に同期します。"
+        },
+        "answer": {
+          "title": "3. 文脈付きで回答",
+          "body": "ユーザーの質問に最適な結果を合わせ、自然なショップ店員のように返答します。"
+        }
+      }
+    },
+    "features": {
+      "eyebrow": "最新カタログのために",
+      "title": "保存・ベクトル化・チャット回答をワンストップで",
+      "subtitle": "常に最新の在庫状況に基づいた回答を提供します。",
+      "capture": {
+        "title": "ナレッジを一元管理",
+        "body": "SKU 情報や発売ノートなど、あらゆる知識を一つのワークスペースに。"
+      },
+      "vectorize": {
+        "title": "自動埋め込み",
+        "body": "OpenAI + Chroma の組み合わせで、意味検索を待ち時間なしに。"
+      },
+      "chat": {
+        "title": "会話型の提案",
+        "body": "利用者は自然言語で質問し、根拠付きの推奨商品を受け取ります。"
+      }
+    }
   },
   "about": {
     "title": "情報ナビチャットについて",

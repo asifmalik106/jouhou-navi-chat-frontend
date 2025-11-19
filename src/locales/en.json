@@ -20,8 +20,53 @@
     "chat": "Chat"
   },
   "home": {
-    "title": "Welcome to Jouhou Navi Chat",
-    "message": "Explore localized content across all routes with Vue 3."
+    "hero_eyebrow": "AI-native workspace",
+    "hero_title": "Turn your catalog into always-on product intelligence",
+    "hero_subtitle": "Store every detail in DynamoDB, let OpenAI APIs vectorize it, and deliver conversational answers powered by a real-time VectorDB.",
+    "hero_primary_cta": "Chat with your catalog",
+    "hero_secondary_cta": "Manage products",
+    "stats": {
+      "vector_value": "12K+",
+      "vector_label": "Vectors indexed",
+      "products_value": "800+",
+      "products_label": "Products synced",
+      "latency_value": "1.2s",
+      "latency_label": "Avg. response time"
+    },
+    "pipeline": {
+      "title": "OpenAI-powered retrieval flow",
+      "steps": {
+        "capture": {
+          "title": "1. Capture anything",
+          "body": "Ingest structured data or free-form notes. Everything lands safely inside DynamoDB."
+        },
+        "vectorize": {
+          "title": "2. Vectorize automatically",
+          "body": "OpenAI embeddings convert your content into vectors instantly and sync them to our VectorDB."
+        },
+        "answer": {
+          "title": "3. Answer with context",
+          "body": "Every chat request retrieves the closest vectors and generates an AI response with exact context."
+        }
+      }
+    },
+    "features": {
+      "eyebrow": "Built for modern catalogs",
+      "title": "One hub for storing, vectorizing, and chatting about products",
+      "subtitle": "Stay confident that every answer reflects the latest inventory state.",
+      "capture": {
+        "title": "Centralize knowledge",
+        "body": "Keep every SKU detail, launch note, and policy inside one Dynamo-backed workspace."
+      },
+      "vectorize": {
+        "title": "Automatic embeddings",
+        "body": "OpenAI embeddings + vector search ensures semantic lookups are as fast as keyword search."
+      },
+      "chat": {
+        "title": "Conversational replies",
+        "body": "Customers type natural questions and receive curated product recommendations with citations."
+      }
+    }
   },
   "about": {
     "title": "About Jouhou Navi Chat",

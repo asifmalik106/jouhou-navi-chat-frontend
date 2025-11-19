@@ -107,6 +107,7 @@ onBeforeUnmount(() => {
 .app {
   min-height: 100vh;
   background: #f5f5f5;
+  line-height: 1.6;
 }
 
 .app-main {
