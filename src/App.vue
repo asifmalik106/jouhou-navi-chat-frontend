@@ -1,41 +1,51 @@
 <template>
   <div class="app" :class="localeClass">
-    <header class="app-header">
-      <nav class="nav">
-        <RouterLink class="nav-link" to="/">
-          {{ t('navigation.home') }}
-        </RouterLink>
-        <RouterLink class="nav-link" to="/about">
-          {{ t('navigation.about') }}
-        </RouterLink>
-        <RouterLink class="nav-link" to="/contact">
-          {{ t('navigation.contact') }}
-        </RouterLink>
-        <RouterLink class="nav-link" to="/products">
-          {{ t('navigation.products') }}
-        </RouterLink>
-        <RouterLink class="nav-link" to="/chat">
-          {{ t('navigation.chat') }}
-        </RouterLink>
-        <RouterLink class="nav-link" to="/profile">
-          {{ t('navigation.profile') }}
-        </RouterLink>
-        <RouterLink class="nav-link" to="/login">
-          {{ t('navigation.login') }}
-        </RouterLink>
-      </nav>
-      <label class="language-select">
-        <span>{{ t('language.label') }}</span>
-        <select v-model="locale">
-          <option
-            v-for="option in languageOptions"
-            :key="option.value"
-            :value="option.value"
+    <header class="bg-dark text-white py-3">
+      <div class="container-fluid d-flex flex-wrap justify-content-between align-items-center gap-3">
+        <nav class="nav flex-wrap gap-3">
+          <RouterLink class="nav-link text-white px-0" to="/">
+            {{ t('navigation.home') }}
+          </RouterLink>
+          <RouterLink v-if="isAuthed" class="nav-link text-white px-0" to="/products">
+            {{ t('navigation.products') }}
+          </RouterLink>
+          <RouterLink v-if="isAuthed" class="nav-link text-white px-0" to="/chat">
+            {{ t('navigation.chat') }}
+          </RouterLink>
+          <RouterLink v-if="isAuthed" class="nav-link text-white px-0" to="/profile">
+            {{ t('navigation.profile') }}
+          </RouterLink>
+        </nav>
+        <div class="d-flex align-items-center gap-3">
+          <label class="d-flex align-items-center gap-2 mb-0">
+            <span class="small text-nowrap">{{ t('language.label') }}</span>
+            <select v-model="locale" class="form-select form-select-sm text-bg-dark border-secondary">
+              <option
+                v-for="option in languageOptions"
+                :key="option.value"
+                :value="option.value"
+              >
+                {{ option.label }}
+              </option>
+            </select>
+          </label>
+          <button
+            v-if="isAuthed"
+            class="btn btn-sm btn-outline-light"
+            @click="handleLogout"
           >
-            {{ option.label }}
-          </option>
-        </select>
-      </label>
+            <i class="bi bi-box-arrow-right me-1"></i>
+            {{ t('navigation.logout') }}
+          </button>
+          <RouterLink
+            v-else
+            class="btn btn-sm btn-outline-light"
+            to="/login"
+          >
+            {{ t('navigation.login') }}
+          </RouterLink>
+        </div>
+      </div>
     </header>
     <main class="app-main">
       <RouterView />
@@ -44,10 +54,14 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, ref, onMounted, onBeforeUnmount } from 'vue';
+import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
+import { isAuthenticated, clearStoredTokens, AUTH_CHANGE_EVENT } from './services/authApi';
 
 const { t, locale } = useI18n({ useScope: 'global' });
+const router = useRouter();
+const isAuthed = ref(false);
 
 const languageOptions = computed(() => [
   { value: 'en', label: 'English' },
@@ -64,60 +78,35 @@ const localeClass = computed(() => {
 
   return map[locale.value] ?? 'locale-en';
 });
+
+const refreshAuthState = () => {
+  isAuthed.value = isAuthenticated();
+};
+
+const handleLogout = () => {
+  clearStoredTokens();
+  refreshAuthState();
+  router.push({ name: 'login' });
+};
+
+onMounted(() => {
+  refreshAuthState();
+  if (typeof window !== 'undefined') {
+    window.addEventListener(AUTH_CHANGE_EVENT, refreshAuthState);
+  }
+});
+
+onBeforeUnmount(() => {
+  if (typeof window !== 'undefined') {
+    window.removeEventListener(AUTH_CHANGE_EVENT, refreshAuthState);
+  }
+});
 </script>
 
 <style scoped>
 .app {
-  font-family: 'Geist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   min-height: 100vh;
   background: #f5f5f5;
-  color: #1a1a1a;
-}
-
-.app.locale-ja {
-  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif;
-}
-
-.app.locale-bn {
-  font-family: 'AdorshoLipi', 'Noto Sans Bengali', 'Vrinda', sans-serif;
-}
-
-.app-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background: #2d3748;
-  color: #fff;
-}
-
-.nav {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.nav-link {
-  color: inherit;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.nav-link.router-link-active {
-  text-decoration: underline;
-}
-
-.language-select {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.language-select select {
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-  border: 1px solid #4a5568;
-  background: #1a202c;
-  color: #fff;
 }
 
 .app-main {
