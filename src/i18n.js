@@ -6,7 +6,7 @@ import bn from './locales/bn.json';
 // Provide English, Japanese, and Bangla translations for navigation and page content
 const i18n = createI18n({
   legacy: false,
-  locale: 'en',
+  locale: 'ja',
   fallbackLocale: 'en',
   messages: {
     en,
