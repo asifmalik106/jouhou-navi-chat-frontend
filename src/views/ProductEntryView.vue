@@ -355,7 +355,8 @@ const loadProducts = async () => {
   listState.error = '';
   try {
     const data = await productApi.list();
-    products.value = Array.isArray(data) ? data : [];
+    const items = Array.isArray(data?.items) ? data.items : [];
+    products.value = items;
   } catch (error) {
     listState.error = error?.message || t('product.messages.fetch_error');
   } finally {
