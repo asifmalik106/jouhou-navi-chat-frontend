@@ -13,7 +13,8 @@
     "home": "Home",
     "about": "About",
     "contact": "Contact",
-    "login": "Login"
+    "login": "Login",
+    "profile": "Profile"
   },
   "home": {
     "title": "Welcome to Jouhou Navi Chat",
@@ -98,5 +99,41 @@
     "login_cta": "Return to login",
     "success_message": "Password reset successfully. You can log in with the new password.",
     "error_message": "We couldn't reset your password. Please recheck the code."
+  },
+  "profile": {
+    "title": "Your profile",
+    "subtitle": "Review account information and update your password.",
+    "login_required": "Sign in to view your profile details.",
+    "info_title": "Account details",
+    "info_subtitle": "Fetched directly from the authentication service.",
+    "refresh": "Refresh",
+    "raw_title": "Raw payload",
+    "empty_state": "Profile data will appear here once loaded.",
+    "labels": {
+      "name": "Name",
+      "email": "Email",
+      "verified": "Email verified",
+      "verified_true": "Yes",
+      "verified_false": "No"
+    },
+    "password": {
+      "title": "Change password",
+      "subtitle": "Set a new password for your account.",
+      "old": "Current password",
+      "new": "New password",
+      "submit": "Update password",
+      "success": "Password updated successfully.",
+      "error_generic": "We couldn't update your password. Try again."
+    },
+    "errors": {
+      "generic": "Unable to load profile.",
+      "missing_token": "You need to be signed in to change your password."
+    },
+    "logout": {
+      "cta": "Log out",
+      "success": "You have been logged out.",
+      "error": "Unable to log out. Please try again.",
+      "missing_token": "You must be signed in to log out."
+    }
   }
 }

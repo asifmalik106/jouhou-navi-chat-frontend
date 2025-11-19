@@ -11,6 +11,9 @@
         <RouterLink class="nav-link" to="/contact">
           {{ t('navigation.contact') }}
         </RouterLink>
+        <RouterLink class="nav-link" to="/profile">
+          {{ t('navigation.profile') }}
+        </RouterLink>
         <RouterLink class="nav-link" to="/login">
           {{ t('navigation.login') }}
         </RouterLink>
