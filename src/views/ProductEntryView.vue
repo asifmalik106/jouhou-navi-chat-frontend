@@ -258,7 +258,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, reactive, ref } from 'vue';
+import { onMounted, reactive, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import AlertBox from '../components/AlertBox.vue';
 import { productApi } from '../services/productApi';
@@ -274,6 +274,8 @@ const { t, locale } = useI18n({ useScope: 'global' });
 const products = ref([]);
 const editingProductId = ref(null);
 const imageInput = ref(null);
+const featuredImageFile = ref(null);
+const featuredImagePreview = ref('');
 
 const form = reactive({
   title: '',
@@ -295,10 +297,6 @@ const listState = reactive({
   loading: false,
   error: '',
 });
-
-const featuredImagePreview = computed(() =>
-  form.featuredImage?.trim() ? form.featuredImage.trim() : '',
-);
 
 const truncateText = (text, length) => {
   if (!text) return '';
@@ -322,6 +320,8 @@ const resetForm = () => {
   if (imageInput.value) {
     imageInput.value.value = '';
   }
+  featuredImageFile.value = null;
+  updatePreview('');
   form.category = '';
   form.description = '';
   form.stock = 0;
@@ -332,15 +332,23 @@ const resetForm = () => {
   formState.success = '';
 };
 
-const buildPayload = () => ({
-  title: form.title,
-  featuredImage: form.featuredImage,
-  category: form.category,
-  description: form.description,
-  stock: Number(form.stock) || 0,
-  price: Number(form.price) || 0,
-  publish: !!form.publish,
-});
+const buildPayload = () => {
+  const formData = new FormData();
+  formData.append('title', form.title);
+  formData.append('category', form.category);
+  formData.append('description', form.description);
+  formData.append('stock', String(Number(form.stock) || 0));
+  formData.append('price', String(Number(form.price) || 0));
+  formData.append('publish', String(!!form.publish));
+
+  if (featuredImageFile.value) {
+    formData.append('featuredImage', featuredImageFile.value);
+  } else if (form.featuredImage) {
+    formData.append('featuredImage', form.featuredImage);
+  }
+
+  return formData;
+};
 
 const loadProducts = async () => {
   listState.loading = true;
@@ -386,6 +394,8 @@ const handleEdit = (product) => {
   if (imageInput.value) {
     imageInput.value.value = '';
   }
+  featuredImageFile.value = null;
+  updatePreview(form.featuredImage);
   form.category = product.category ?? '';
   form.description = product.description ?? '';
   form.stock = product.stock ?? 0;
@@ -412,25 +422,36 @@ const handleImageChange = async (event) => {
   const file = event.target?.files?.[0];
   if (!file) {
     form.featuredImage = '';
+    featuredImageFile.value = null;
+    updatePreview('');
     return;
   }
 
   try {
-    const dataUrl = await new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = () => reject(reader.error);
-      reader.readAsDataURL(file);
-    });
-    form.featuredImage = typeof dataUrl === 'string' ? dataUrl : '';
+    featuredImageFile.value = file;
+    form.featuredImage = '';
+    updatePreview(URL.createObjectURL(file));
   } catch (error) {
     formState.error = error?.message || t('product.messages.image_error');
     form.featuredImage = '';
+    featuredImageFile.value = null;
     if (imageInput.value) {
       imageInput.value.value = '';
     }
+    updatePreview('');
   }
 };
+
+function updatePreview(src) {
+  if (
+    featuredImagePreview.value &&
+    featuredImagePreview.value.startsWith('blob:') &&
+    typeof URL !== 'undefined'
+  ) {
+    URL.revokeObjectURL(featuredImagePreview.value);
+  }
+  featuredImagePreview.value = src || '';
+}
 
 onMounted(() => {
   loadProducts();

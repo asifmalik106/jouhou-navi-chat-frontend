@@ -1,9 +1,5 @@
 import { API_BASE_URL, getStoredTokens } from './authApi';
 
-const defaultHeaders = {
-  'Content-Type': 'application/json',
-};
-
 function getAuthHeaders() {
   const tokens = getStoredTokens();
   if (!tokens?.accessToken) {
@@ -11,14 +7,17 @@ function getAuthHeaders() {
   }
   const tokenType = tokens.tokenType ?? 'Bearer';
   return {
-    ...defaultHeaders,
     Authorization: `${tokenType} ${tokens.accessToken}`,
   };
 }
 
 async function request(path, options = {}) {
+  const body = options.body;
+  const isFormData = typeof FormData !== 'undefined' && body instanceof FormData;
+
   const headers = {
     ...getAuthHeaders(),
+    ...(!isFormData ? { 'Content-Type': 'application/json' } : {}),
     ...(options.headers || {}),
   };
 
@@ -54,13 +53,13 @@ export const productApi = {
   create(payload) {
     return request('/products', {
       method: 'POST',
-      body: JSON.stringify(payload),
+      body: payload,
     });
   },
   update(id, payload) {
     return request(`/products/${id}`, {
       method: 'PUT',
-      body: JSON.stringify(payload),
+      body: payload,
     });
   },
   remove(id) {
