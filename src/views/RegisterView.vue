@@ -69,10 +69,10 @@ const router = useRouter();
 const REGISTRATION_NOTICE_KEY = 'registration_success_notice';
 
 const form = reactive({
-  name: 'asif',
-  email: 'a@b.com',
-  password: '123456',
-  confirmPassword: '123456',
+  name: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
 });
 
 const state = reactive({
