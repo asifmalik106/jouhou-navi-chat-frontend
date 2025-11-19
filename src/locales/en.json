@@ -85,9 +85,14 @@
     "code": "Verification code",
     "cta": "Confirm email",
     "resend": "Need another code?",
+    "resend_prompt": "Didn't receive the OTP code? Try again.",
+    "resend_button": "Resend code",
+    "resend_timer": "Try again in {seconds}s",
+    "resend_success": "A new verification code has been sent. Check your email inbox.",
     "login_cta": "Continue to login",
     "success_message": "Email verified successfully. You can log in now.",
-    "error_message": "Verification failed. Check the code and try again."
+    "error_message": "Verification failed. Check the code and try again.",
+    "registration_notice": "Account created successfully. Please check your email for the verification code and confirm your account."
   },
   "forgot_confirm": {
     "title": "Set a new password",

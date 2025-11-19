@@ -1,7 +1,7 @@
 <template>
   <div :class="['alert', `alert-${typeClass}`]" role="alert">
-    <span v-if="iconToUse" class="alert-icon">
-      <i :class="['bi', iconToUse]"></i>
+    <span v-if="iconClass" class="alert-icon">
+      <i :class="['bi',iconClass]"></i>
     </span>
     <div class="alert-text">
       <p v-if="title" class="alert-heading">{{ title }}</p>
@@ -45,7 +45,7 @@ const typeClass = computed(() => {
   return allowed.includes(props.type) ? props.type : 'info';
 });
 
-const iconToUse = computed(() => {
+const iconClass = computed(() => {
   if (props.icon) return props.icon;
   const map = {
     danger: 'bi-x-lg',
@@ -53,6 +53,6 @@ const iconToUse = computed(() => {
     info: 'bi-info-lg',
     warning: 'bi-exclamation-lg',
   };
-  return map[typeClass.value];
+  return map[typeClass.value] ?? '';
 });
 </script>
