@@ -71,16 +71,17 @@
     },
     "howto": {
       "title": "Get started in a few steps",
-      "body": "Jouhou Navi keeps your products searchable with OpenAI + VectorDB. Follow these steps to upload inventory and start chatting.",
+      "body": " keeps your products searchable with OpenAI + VectorDB. Follow these steps to upload inventory and start chatting.",
+      "step": "Step",
       "steps": {
         "login": {
-          "description": "Log in with your account. Need one? Register first."
+          "description": "Firstly you need to LOG IN into your account. If you don't have the account yet, Register first."
         },
         "products": {
-          "description": "Go to the product page to review the inventory list and add new items through the entry form."
+          "description": "After succesful login, Go to the product page to review the inventory list. If you want, you can also add new items through the product entry form."
         },
         "chat": {
-          "description": "Visit the chat page to ask questions. Every reply is backed by the latest inventory data."
+          "description": "Visit the chat page to ask questions. Every reply is based on the latest inventory data."
         }
       }
     }

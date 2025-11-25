@@ -23,8 +23,8 @@
   },
   "home": {
     "hero_eyebrow": "AI ネイティブ基盤",
-    "hero_title": "カタログをリアルタイムのプロダクトインテリジェンスに",
-    "hero_subtitle": "商品を DynamoDB に格納し、OpenAI API が自動でベクトル化。VectorDB からの検索結果を元にチャットで回答します。",
+    "hero_title": "カタログを常時稼働のインテリジェンスへ",
+    "hero_subtitle": "商品の詳細を DynamoDB に保存し、OpenAI API が自動でベクトル化。VectorDB に同期した最新データでチャット回答を行います。",
     "hero_primary_cta": "カタログと会話する",
     "hero_secondary_cta": "商品を管理する",
     "stats": {
@@ -36,7 +36,7 @@
       "latency_label": "平均応答時間"
     },
     "pipeline": {
-      "title": "OpenAI が支えるワークフロー",
+      "title": "OpenAI を活用したフロー",
       "steps": {
         "capture": {
           "title": "1. 情報を集約",
@@ -54,7 +54,7 @@
     },
     "features": {
       "eyebrow": "最新カタログのために",
-      "title": "保存・ベクトル化・チャット回答をワンストップで",
+      "title": "保存・ベクトর化・チャット回答をワンストップで",
       "subtitle": "常に最新の在庫状況に基づいた回答を提供します。",
       "capture": {
         "title": "ナレッジを一元管理",
@@ -62,7 +62,7 @@
       },
       "vectorize": {
         "title": "自動埋め込み",
-        "body": "OpenAI + Chroma の組み合わせで、意味検索を待ち時間なしに。"
+        "body": "OpenAI + VectorDB の組み合わせで、意味検索を待ち時間なしに。"
       },
       "chat": {
         "title": "会話型の提案",
@@ -71,7 +71,8 @@
     },
     "howto": {
       "title": "数ステップで開始",
-      "body": "Jouhou Navi は OpenAI と VectorDB で商品検索を自動化します。次の手順でセットアップしてください。",
+      "body": " は OpenAI + VectorDB で商品検索を自動化します。以下の手順で始めてください。",
+      "step": "ステップ",
       "steps": {
         "login": {
           "description": "まずログインします。アカウントがない場合は登録を行ってください。"

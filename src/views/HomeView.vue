@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row align-items-center g-5">
         <div class="col-lg-7">
-          <p class="text-uppercase text-primary fw-semibold small mb-2">
+          <p class="fs-3 text-uppercase text-primary fw-semibold small mb-2">
             {{ t('home.hero_eyebrow') }}
           </p>
           <h1 class="display-5 fw-semibold mb-3">
@@ -38,7 +38,7 @@
         <div class="col-lg-5">
           <div class="card shadow-sm border-0">
             <div class="card-body p-4">
-              <p class="text-uppercase text-muted small mb-2">
+              <p class="fs-3 text-uppercase text-muted small mb-2">
                 {{ t('home.pipeline.title') }}
               </p>
               <ul class="list-unstyled mb-0">
@@ -62,7 +62,7 @@
   <section class="home-features py-5 bg-light">
     <div class="container">
       <div class="text-center mb-5">
-        <p class="text-uppercase text-primary fw-semibold small mb-2">
+        <p class="fs-3 text-uppercase text-primary fw-semibold small mb-2">
           {{ t('home.features.eyebrow') }}
         </p>
         <h2 class="fw-semibold">{{ t('home.features.title') }}</h2>
@@ -90,11 +90,12 @@
   <section id="howto" class="home-howto py-5">
     <div class="container">
       <div class="text-center mb-4">
-        <p class="text-uppercase text-primary fw-semibold small mb-2">
+        <p class="fs-3 text-uppercase text-primary fw-semibold small mb-2">
           {{ t('home.howto.title') }}
         </p>
         <p class="text-muted mb-0">
-          {{ t('home.howto.body') }}
+        <span>{{ t('app_name.title') }}<sup class="badge text-bg-dark logo-sup-text">{{ t('app_name.tag') }}</sup></span>
+                    {{ t('home.howto.body') }}
         </p>
       </div>
 
@@ -104,10 +105,11 @@
             <div class="card-body">
               <div class="d-flex flex-column gap-4">
                 <div class="d-flex gap-3 align-items-start">
-                  <span class="badge bg-dark-subtle text-dark-emphasis rounded-pill mt-1">1</span>
+                  <span class="fs-5 badge bg-dark-subtle text-dark-emphasis rounded-pill mt-1">{{ t('home.howto.step') }} 1</span>
                   <div>
                     <h3 class="h5 mb-1">{{ t('navigation.login') }}</h3>
                     <p class="mb-1">
+                    
                       {{ t('home.howto.steps.login.description') }}
                     </p>
                     <RouterLink class="btn btn-link px-0" to="/login">
@@ -120,7 +122,7 @@
                   </div>
                 </div>
                 <div class="d-flex gap-3 align-items-start">
-                  <span class="badge bg-dark-subtle text-dark-emphasis rounded-pill mt-1">2</span>
+                  <h3 class="fs-5 badge bg-dark-subtle text-dark-emphasis rounded-pill mt-1">{{ t('home.howto.step') }} 2</h3>
                   <div>
                     <h3 class="h5 mb-1">{{ t('navigation.products') }}</h3>
                     <p class="mb-1">
@@ -132,7 +134,7 @@
                   </div>
                 </div>
                 <div class="d-flex gap-3 align-items-start">
-                  <span class="badge bg-dark-subtle text-dark-emphasis rounded-pill mt-1">3</span>
+                  <h3 class="fs-5 badge bg-dark-subtle text-dark-emphasis rounded-pill mt-1">{{ t('home.howto.step') }} 3</h3>
                   <div>
                     <h3 class="h5 mb-1">{{ t('navigation.chat') }}</h3>
                     <p class="mb-1">
