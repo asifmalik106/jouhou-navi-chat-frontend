@@ -243,13 +243,13 @@
                       >
                         {{ t('product.actions.edit') }}
                       </RouterLink>
-                      <button
+                      <!-- <button
                         type="button"
                         class="btn btn-outline-danger btn-sm flex-fill"
                         @click="handleDelete(product)"
                       >
                         {{ t('product.actions.delete') }}
-                      </button>
+                      </button> -->
                     </div>
                   </div>
                 </div>
