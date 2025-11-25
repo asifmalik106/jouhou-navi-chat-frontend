@@ -41,17 +41,6 @@
               <p class="fs-3 text-uppercase text-muted small mb-2">
                 {{ t('home.pipeline.title') }}
               </p>
-              <ul class="list-unstyled mb-0">
-                <li v-for="step in pipelineSteps" :key="step" class="mb-3 d-flex align-items-start gap-2">
-                  <span class="badge bg-dark-subtle text-dark-emphasis rounded-pill mt-1">
-                    {{ step.order }}
-                  </span>
-                  <div>
-                    <p class="fw-semibold mb-1">{{ t(step.title) }}</p>
-                    <p class="text-muted small mb-0">{{ t(step.body) }}</p>
-                  </div>
-                </li>
-              </ul>
             </div>
           </div>
         </div>
