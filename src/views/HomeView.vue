@@ -20,20 +20,6 @@
               {{ t('home.hero_secondary_cta') }}
             </RouterLink>
           </div>
-          <div class="row g-3 text-center text-md-start">
-            <div class="col-md-4">
-              <p class="h2 fw-semibold mb-0">{{ t('home.stats.vector_value') }}</p>
-              <p class="text-muted small mb-0">{{ t('home.stats.vector_label') }}</p>
-            </div>
-            <div class="col-md-4">
-              <p class="h2 fw-semibold mb-0">{{ t('home.stats.products_value') }}</p>
-              <p class="text-muted small mb-0">{{ t('home.stats.products_label') }}</p>
-            </div>
-            <div class="col-md-4">
-              <p class="h2 fw-semibold mb-0">{{ t('home.stats.latency_value') }}</p>
-              <p class="text-muted small mb-0">{{ t('home.stats.latency_label') }}</p>
-            </div>
-          </div>
         </div>
         <div class="col-lg-5">
           <div class="card shadow-sm border-0">
@@ -41,6 +27,17 @@
               <p class="fs-3 text-uppercase text-muted small mb-2">
                 {{ t('home.pipeline.title') }}
               </p>
+              <ul class="list-unstyled mb-0">
+                <li v-for="step in pipelineSteps" :key="step" class="mb-3 d-flex align-items-start gap-2">
+                  <span class="badge bg-dark-subtle text-dark-emphasis rounded-pill mt-1">
+                    {{ step.order }}
+                  </span>
+                  <div>
+                    <p class="fw-semibold mb-1">{{ t(step.title) }}</p>
+                    <p class="text-muted small mb-0">{{ t(step.body) }}</p>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
