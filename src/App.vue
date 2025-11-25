@@ -6,6 +6,9 @@
           <RouterLink class="nav-link text-white px-0" to="/">
             {{ t('navigation.home') }}
           </RouterLink>
+          <a class="nav-link text-white px-0" href="#howto">
+            {{ t('navigation.howto') }}
+          </a>
           <RouterLink v-if="isAuthed" class="nav-link text-white px-0" to="/products">
             {{ t('navigation.products') }}
           </RouterLink>

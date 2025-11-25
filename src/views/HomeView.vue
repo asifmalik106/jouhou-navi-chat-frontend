@@ -86,6 +86,70 @@
       </div>
     </div>
   </section>
+
+  <section id="howto" class="home-howto py-5">
+    <div class="container">
+      <div class="text-center mb-4">
+        <p class="text-uppercase text-primary fw-semibold small mb-2">
+          {{ t('home.howto.title') }}
+        </p>
+        <p class="text-muted mb-0">
+          {{ t('home.howto.body') }}
+        </p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-12">
+          <div class="card shadow-sm border-0">
+            <div class="card-body">
+              <div class="d-flex flex-column gap-4">
+                <div class="d-flex gap-3 align-items-start">
+                  <span class="badge bg-dark-subtle text-dark-emphasis rounded-pill mt-1">1</span>
+                  <div>
+                    <h3 class="h5 mb-1">{{ t('navigation.login') }}</h3>
+                    <p class="mb-1">
+                      {{ t('home.howto.steps.login.description') }}
+                    </p>
+                    <RouterLink class="btn btn-link px-0" to="/login">
+                      {{ t('navigation.login') }}
+                    </RouterLink>
+                    <span class="text-muted mx-1">/</span>
+                    <RouterLink class="btn btn-link px-0" to="/register">
+                      {{ t('navigation.register') }}
+                    </RouterLink>
+                  </div>
+                </div>
+                <div class="d-flex gap-3 align-items-start">
+                  <span class="badge bg-dark-subtle text-dark-emphasis rounded-pill mt-1">2</span>
+                  <div>
+                    <h3 class="h5 mb-1">{{ t('navigation.products') }}</h3>
+                    <p class="mb-1">
+                      {{ t('home.howto.steps.products.description') }}
+                    </p>
+                    <RouterLink class="btn btn-link px-0" to="/products">
+                      {{ t('navigation.products') }}
+                    </RouterLink>
+                  </div>
+                </div>
+                <div class="d-flex gap-3 align-items-start">
+                  <span class="badge bg-dark-subtle text-dark-emphasis rounded-pill mt-1">3</span>
+                  <div>
+                    <h3 class="h5 mb-1">{{ t('navigation.chat') }}</h3>
+                    <p class="mb-1">
+                      {{ t('home.howto.steps.chat.description') }}
+                    </p>
+                    <RouterLink class="btn btn-link px-0" to="/chat">
+                      {{ t('navigation.chat') }}
+                    </RouterLink>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script setup>

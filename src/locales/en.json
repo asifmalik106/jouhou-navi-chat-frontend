@@ -11,9 +11,11 @@
   },
   "navigation": {
     "home": "Home",
+    "howto": "How it works",
     "about": "About",
     "contact": "Contact",
     "login": "Login",
+    "register": "Register",
     "logout": "Logout",
     "profile": "Profile",
     "products": "Products",
@@ -65,6 +67,21 @@
       "chat": {
         "title": "Conversational replies",
         "body": "Customers type natural questions and receive curated product recommendations with citations."
+      }
+    },
+    "howto": {
+      "title": "Get started in a few steps",
+      "body": "Jouhou Navi keeps your products searchable with OpenAI + VectorDB. Follow these steps to upload inventory and start chatting.",
+      "steps": {
+        "login": {
+          "description": "Log in with your account. Need one? Register first."
+        },
+        "products": {
+          "description": "Go to the product page to review the inventory list and add new items through the entry form."
+        },
+        "chat": {
+          "description": "Visit the chat page to ask questions. Every reply is backed by the latest inventory data."
+        }
       }
     }
   },

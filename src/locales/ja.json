@@ -11,10 +11,12 @@
   },
   "navigation": {
     "home": "ホーム",
+    "howto": "ご利用方法",
     "about": "概要",
     "contact": "お問い合わせ",
     "login": "ログイン",
     "logout": "ログアウト",
+    "register": "新規登録",
     "profile": "プロフィール",
     "products": "商品管理",
     "chat": "チャット"
@@ -65,6 +67,21 @@
       "chat": {
         "title": "会話型の提案",
         "body": "利用者は自然言語で質問し、根拠付きの推奨商品を受け取ります。"
+      }
+    },
+    "howto": {
+      "title": "数ステップで開始",
+      "body": "Jouhou Navi は OpenAI と VectorDB で商品検索を自動化します。次の手順でセットアップしてください。",
+      "steps": {
+        "login": {
+          "description": "まずログインします。アカウントがない場合は登録を行ってください。"
+        },
+        "products": {
+          "description": "商品ページで一覧を確認し、エントリーフォームから新しい商品を追加できます。"
+        },
+        "chat": {
+          "description": "チャットページで質問すると、最新の在庫データを基に AI が回答します。"
+        }
       }
     }
   },
